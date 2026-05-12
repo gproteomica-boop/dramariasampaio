@@ -9,400 +9,170 @@
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --black: #000000;
-      --white: #FFFFFF;
-      --accent: #004225;
-      --gray-mid: #cccccc;
-    }
-
+    :root { --black: #000000; --white: #FFFFFF; --accent: #004225; --gray-mid: #cccccc; }
     html { scroll-behavior: smooth; }
+    body { background: var(--white); color: var(--black); font-family: 'Inter', sans-serif; font-weight: 300; font-size: 16px; line-height: 1.75; -webkit-font-smoothing: antialiased; }
 
-    body {
-      background: var(--white);
-      color: var(--black);
-      font-family: 'Inter', sans-serif;
-      font-weight: 300;
-      font-size: 16px;
-      line-height: 1.75;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      background: var(--white);
-      border-bottom: 1px solid var(--accent);
-      padding: 1.2rem 2.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    nav .nav-name {
-      font-family: 'EB Garamond', serif;
-      font-size: 1.05rem;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 2.5rem;
-    }
-
-    nav ul li a {
-      text-decoration: none;
-      color: var(--black);
-      font-size: 0.78rem;
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
-
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--white); border-bottom: 1px solid var(--accent); padding: 1rem 2.5rem; display: flex; justify-content: space-between; align-items: center; }
+    nav .nav-name { font-family: 'EB Garamond', serif; font-size: 1.05rem; font-weight: 500; letter-spacing: 0.04em; }
+    nav ul { list-style: none; display: flex; gap: 2rem; align-items: center; }
+    nav ul li a { text-decoration: none; color: var(--black); font-size: 0.78rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.2s; }
     nav ul li a:hover { color: var(--accent); }
+    .nav-cta { background: var(--accent) !important; color: var(--white) !important; padding: 0.55rem 1.4rem !important; letter-spacing: 0.1em !important; transition: opacity 0.2s !important; }
+    .nav-cta:hover { opacity: 0.85; color: var(--white) !important; }
 
-    /* ── HERO ── */
-    header {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 0 2.5rem 6rem;
-      border-bottom: 1px solid var(--accent);
-      position: relative;
-    }
-
-    .hero-label {
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #555;
-      margin-bottom: 2.5rem;
-    }
-
-    .hero-title {
-      font-family: 'EB Garamond', serif;
-      font-size: clamp(3.2rem, 7vw, 7rem);
-      font-weight: 500;
-      line-height: 1.05;
-      max-width: 900px;
-      letter-spacing: -0.01em;
-    }
-
-    .hero-subs {
-      margin-top: 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-    }
-
-    .hero-subs span {
-      font-size: 0.82rem;
-      font-weight: 400;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #555;
-    }
-
-    .hero-subs span.crm {
-      color: var(--black);
-      font-weight: 500;
-    }
-
-    .hero-scroll {
-      position: absolute;
-      bottom: 2.5rem;
-      right: 2.5rem;
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      writing-mode: vertical-rl;
-      color: var(--gray-mid);
-    }
-
-    /* ── SECTIONS ── */
-    section {
-      padding: 8rem 2.5rem;
-      border-bottom: 1px solid var(--accent);
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .section-label {
-      font-size: 0.68rem;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 3rem;
-    }
-
-    /* ── SOBRE ── */
-    .manifesto-text {
-      font-family: 'EB Garamond', serif;
-      font-size: clamp(1.6rem, 2.8vw, 2.4rem);
-      font-weight: 400;
-      line-height: 1.5;
-      max-width: 820px;
-    }
-
-    .manifesto-text em {
-      font-style: italic;
-      color: #444;
-    }
-
-    .bio-para {
-      margin-top: 2rem;
-      font-size: clamp(1rem, 1.5vw, 1.15rem);
-      font-family: 'Inter', sans-serif;
-      font-weight: 300;
-      color: #444;
-      max-width: 780px;
-      line-height: 1.85;
-    }
-
-    .manifesto-detail {
-      margin-top: 3rem;
-      padding-top: 2rem;
-      border-top: 1px solid #e0e0e0;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-    }
-
-    .manifesto-detail p {
-      font-size: 0.82rem;
-      font-weight: 300;
-      color: #555;
-      letter-spacing: 0.03em;
-      line-height: 1.8;
-    }
-
-    .manifesto-detail strong {
-      display: block;
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--black);
-      margin-bottom: 0.6rem;
-    }
-
-    /* ── SERVIÇOS ── */
-    .services-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 0;
-    }
-
-    .service-item {
-      padding: 3rem 3rem 3rem 0;
-      border-right: 1px solid #e0e0e0;
-    }
-
-    .service-item:last-child {
-      border-right: none;
-      padding-right: 0;
-      padding-left: 3rem;
-    }
-
-    .service-item:nth-child(2) {
-      padding-left: 3rem;
-    }
-
-    .service-tier {
-      font-size: 0.68rem;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--black);
-      margin-bottom: 0.8rem;
-      border-bottom: 1px solid var(--accent);
-      padding-bottom: 0.6rem;
-      display: inline-block;
-    }
-
-    .service-name {
-      font-family: 'EB Garamond', serif;
-      font-size: 1.5rem;
-      font-weight: 500;
-      line-height: 1.25;
-      margin: 1rem 0 1rem;
-    }
-
-    .service-desc {
-      font-size: 0.85rem;
-      font-weight: 300;
-      color: #444;
-      line-height: 1.85;
-    }
-
-    .service-notice {
-      font-size: 0.82rem;
-      font-weight: 400;
-      color: var(--black);
-      line-height: 1.85;
-      border-left: 2px solid var(--accent);
-      padding-left: 1rem;
-      margin-top: 0.5rem;
-    }
-
-    .service-notice strong {
-      display: block;
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 0.4rem;
-    }
-
-    /* ── PILARES ── */
-    .pillars-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 4rem;
-    }
-
-    .pillar h3 {
-      font-family: 'EB Garamond', serif;
-      font-size: 1.25rem;
-      font-weight: 500;
-      margin-bottom: 1rem;
-      line-height: 1.3;
-    }
-
-    .pillar p {
-      font-size: 0.85rem;
-      font-weight: 300;
-      color: #444;
-      line-height: 1.9;
-    }
-
-    .pillar-line {
-      width: 28px;
-      height: 1px;
+    /* HERO CTA BANNER */
+    .hero-cta-bar {
       background: var(--accent);
-      margin-bottom: 1.5rem;
-    }
-
-    /* ── AGENDAMENTO ── */
-    #agendamento {
-      background: var(--black);
       color: var(--white);
-      max-width: 100%;
-      border-bottom: none;
+      padding: 0;
+      display: flex;
+      align-items: stretch;
+      min-height: 100vh;
+      flex-direction: column;
+      justify-content: center;
     }
-
-    #agendamento .inner {
+    .hero-cta-inner {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 8rem 2.5rem;
+      padding: 10rem 2.5rem 5rem;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 6rem;
-      align-items: start;
+      align-items: center;
+      width: 100%;
     }
-
-    #agendamento .section-label { color: var(--accent); }
-
-    #agendamento .contact-title {
-      font-family: 'EB Garamond', serif;
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      font-weight: 400;
-      line-height: 1.2;
-      margin-bottom: 2rem;
-    }
-
-    #agendamento .contact-intro {
-      font-size: 0.85rem;
-      font-weight: 300;
-      color: #888;
-      line-height: 1.9;
-      max-width: 400px;
-    }
-
-    .contact-details { display: flex; flex-direction: column; gap: 2.5rem; }
-
-    .contact-item label {
-      display: block;
+    .hero-cta-left .eyebrow {
       font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 1.5rem;
+    }
+    .hero-cta-left h1 {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(3rem, 6vw, 6rem);
+      font-weight: 500;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+    .hero-cta-left .hero-sub {
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-top: 0.3rem;
+    }
+    .hero-cta-left .hero-sub.crm { color: rgba(255,255,255,0.75); font-weight: 500; }
+
+    .hero-cta-right {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .cta-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 2.5rem;
+    }
+    .cta-card .cta-label {
+      font-size: 0.65rem;
+      font-weight: 500;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.5rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 0.8rem;
     }
-
-    .contact-item p {
-      font-size: 0.95rem;
-      font-weight: 300;
-      color: #ccc;
-      line-height: 1.7;
-    }
-
-    .contact-item a {
-      color: var(--white);
-      text-decoration: none;
+    .cta-card .cta-number {
+      font-family: 'EB Garamond', serif;
+      font-size: 2rem;
       font-weight: 400;
+      color: var(--white);
+      margin-bottom: 0.4rem;
     }
-
-    .contact-item a:hover { color: #aaa; }
-
-    .whatsapp-btn {
+    .cta-card .cta-sub {
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 1.5rem;
+    }
+    .btn-whatsapp-hero {
       display: inline-flex;
       align-items: center;
-      gap: 0.8rem;
-      margin-top: 0.8rem;
-      padding: 0.9rem 2rem;
-      border: 1px solid var(--white);
-      color: var(--white);
+      gap: 0.7rem;
+      padding: 1rem 2rem;
+      background: var(--white);
+      color: var(--accent);
       text-decoration: none;
       font-size: 0.78rem;
-      font-weight: 400;
+      font-weight: 500;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       transition: all 0.25s;
+      width: 100%;
+      justify-content: center;
     }
+    .btn-whatsapp-hero:hover { background: #e8f0ea; }
+    .btn-whatsapp-hero svg { width: 18px; height: 18px; fill: var(--accent); }
 
-    .whatsapp-btn:hover {
-      background: var(--white);
-      color: var(--black);
-    }
+    /* SECTIONS */
+    section { padding: 8rem 2.5rem; border-bottom: 1px solid #e8e8e8; max-width: 1200px; margin: 0 auto; }
+    .section-label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 3rem; }
 
-    .contact-note {
-      font-size: 0.75rem;
-      color: #555;
-      margin-top: 1rem;
-      line-height: 1.8;
-    }
+    /* SOBRE */
+    .manifesto-text { font-family: 'EB Garamond', serif; font-size: clamp(1.6rem, 2.8vw, 2.4rem); font-weight: 400; line-height: 1.5; max-width: 820px; }
+    .manifesto-text em { font-style: italic; color: #444; }
+    .bio-para { margin-top: 2rem; font-size: clamp(1rem, 1.5vw, 1.15rem); font-weight: 300; color: #444; max-width: 780px; line-height: 1.85; }
+    .manifesto-detail { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e0e0e0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
+    .manifesto-detail p { font-size: 0.82rem; font-weight: 300; color: #555; letter-spacing: 0.03em; line-height: 1.8; }
+    .manifesto-detail strong { display: block; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--black); margin-bottom: 0.6rem; }
 
-    /* ── FOOTER ── */
-    footer {
-      background: var(--black);
-      color: #444;
-      padding: 2rem 2.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.72rem;
-      letter-spacing: 0.08em;
-      border-top: 1px solid #1a1a1a;
-    }
+    /* SERVIÇOS */
+    .services-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; }
+    .service-item { padding: 3rem 3rem 3rem 0; border-right: 1px solid #e0e0e0; }
+    .service-item:last-child { border-right: none; padding-right: 0; padding-left: 3rem; }
+    .service-item:nth-child(2) { padding-left: 3rem; }
+    .service-tier { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--black); margin-bottom: 0.8rem; border-bottom: 1px solid var(--accent); padding-bottom: 0.6rem; display: inline-block; }
+    .service-name { font-family: 'EB Garamond', serif; font-size: 1.5rem; font-weight: 500; line-height: 1.25; margin: 1rem 0 1rem; }
+    .service-desc { font-size: 0.85rem; font-weight: 300; color: #444; line-height: 1.85; }
+    .promo-tag { display: inline-block; font-size: 0.65rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; background: #f0f7f3; color: var(--accent); border: 1px solid var(--accent); padding: 0.3rem 0.8rem; margin-bottom: 1rem; }
+    .promo-note { font-size: 0.75rem; font-weight: 400; color: #777; font-style: italic; margin-top: 0.8rem; border-top: 1px dashed #ddd; padding-top: 0.8rem; line-height: 1.7; }
 
-    /* ── RESPONSIVE ── */
+    /* PILARES */
+    .pillars-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4rem; }
+    .pillar h3 { font-family: 'EB Garamond', serif; font-size: 1.25rem; font-weight: 500; margin-bottom: 1rem; line-height: 1.3; }
+    .pillar p { font-size: 0.85rem; font-weight: 300; color: #444; line-height: 1.9; }
+    .pillar-line { width: 28px; height: 1px; background: var(--accent); margin-bottom: 1.5rem; }
+
+    /* AGENDAMENTO */
+    #agendamento { background: var(--black); color: var(--white); max-width: 100%; border-bottom: none; }
+    #agendamento .inner { max-width: 1200px; margin: 0 auto; padding: 8rem 2.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+    #agendamento .section-label { color: var(--accent); }
+    #agendamento .contact-title { font-family: 'EB Garamond', serif; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 400; line-height: 1.2; margin-bottom: 2rem; }
+    #agendamento .contact-intro { font-size: 0.85rem; font-weight: 300; color: #888; line-height: 1.9; max-width: 400px; }
+    .contact-details { display: flex; flex-direction: column; gap: 2.5rem; }
+    .contact-item label { display: block; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+    .contact-item p { font-size: 0.95rem; font-weight: 300; color: #ccc; line-height: 1.7; }
+    .contact-item a { color: var(--white); text-decoration: none; font-weight: 400; }
+    .contact-item a:hover { color: #aaa; }
+    .whatsapp-btn { display: inline-flex; align-items: center; gap: 0.8rem; margin-top: 0.8rem; padding: 0.9rem 2rem; border: 1px solid var(--white); color: var(--white); text-decoration: none; font-size: 0.78rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; transition: all 0.25s; }
+    .whatsapp-btn:hover { background: var(--white); color: var(--black); }
+    .contact-note { font-size: 0.75rem; color: #555; margin-top: 1rem; line-height: 1.8; }
+
+    /* FOOTER */
+    footer { background: var(--black); color: #444; padding: 2rem 2.5rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.72rem; letter-spacing: 0.08em; border-top: 1px solid #1a1a1a; }
+
+    /* RESPONSIVE */
     @media (max-width: 900px) {
       nav ul { display: none; }
+      .hero-cta-inner { grid-template-columns: 1fr; gap: 3rem; padding-top: 8rem; }
       .services-grid { grid-template-columns: 1fr; }
-      .service-item {
-        border-right: none;
-        border-bottom: 1px solid #e0e0e0;
-        padding: 2.5rem 0 !important;
-      }
+      .service-item { border-right: none; border-bottom: 1px solid #e0e0e0; padding: 2.5rem 0 !important; }
       .pillars-grid { grid-template-columns: 1fr; gap: 3rem; }
       #agendamento .inner { grid-template-columns: 1fr; gap: 3rem; }
     }
@@ -417,21 +187,33 @@
       <li><a href="#sobre">Sobre</a></li>
       <li><a href="#servicos">Consultas</a></li>
       <li><a href="#pilares">Clínica</a></li>
-      <li><a href="#agendamento">Agendamento</a></li>
+      <li><a href="#agendamento" class="nav-cta">Agendar</a></li>
     </ul>
   </nav>
 
-  <!-- HERO -->
-  <header>
-    <div class="hero-label">Consultório Médico — Rio de Janeiro</div>
-    <h1 class="hero-title">Dra. Maria Sampaio</h1>
-    <div class="hero-subs">
-      <span>Médica</span>
-      <span class="crm">CRM-RJ 52-0125663-7</span>
-      <span>UFRJ · Fisiologia Cardiovascular · Albert Einstein · Cardiologia</span>
+  <!-- HERO COM CTA EM DESTAQUE -->
+  <div class="hero-cta-bar">
+    <div class="hero-cta-inner">
+      <div class="hero-cta-left">
+        <div class="eyebrow">Consultório Médico — Rio de Janeiro</div>
+        <h1>Dra. Maria<br>Sampaio</h1>
+        <div class="hero-sub">Médica Cardiologista</div>
+        <div class="hero-sub crm">CRM-RJ 52-0125663-7</div>
+        <div class="hero-sub" style="margin-top:0.6rem;">UFRJ · Fisiologia Cardiovascular · Albert Einstein</div>
+      </div>
+      <div class="hero-cta-right">
+        <div class="cta-card">
+          <div class="cta-label">Agendamento</div>
+          <div class="cta-number">(21) 99310-3065</div>
+          <div class="cta-sub">WhatsApp · Resposta em até 24h</div>
+          <a class="btn-whatsapp-hero" href="https://wa.me/5521993103065?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta%20com%20a%20Dra.%20Maria%20Sampaio." target="_blank">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Agendar pelo WhatsApp
+          </a>
+        </div>
+      </div>
     </div>
-    <div class="hero-scroll">Role para baixo</div>
-  </header>
+  </div>
 
   <!-- 01 SOBRE -->
   <section id="sobre">
@@ -459,36 +241,36 @@
     </div>
   </section>
 
-  <!-- 02 NÍVEIS DE CUIDADO -->
+  <!-- 02 SERVIÇOS -->
   <section id="servicos">
     <p class="section-label">02 — Níveis de Cuidado</p>
     <div class="services-grid">
 
+      <!-- Consulta Online -->
       <div class="service-item">
+        <div class="promo-tag">Valor Promocional</div>
         <div class="service-tier">R$ 180</div>
-        <div class="service-name">Consulta Solidária</div>
-        <p class="service-desc">
-          Para casos que exigem profundidade: cardiogenética, aortopatias hereditárias,
-          canalopatias e síndromes de risco elevado. Uma consulta estruturada para quem
-          já tem diagnóstico e precisa de raciocínio clínico de alta resolução.
-        </p>
+        <div class="service-name">Consulta Online</div>
+        <p class="service-desc">Atendimento médico completo por videochamada, com o mesmo rigor clínico da consulta presencial. Indicado para acompanhamento, retorno, revisão de exames e orientações gerais.</p>
+        <p class="promo-note">⚠️ Valor promocional de lançamento, sujeito a alteração sem aviso prévio. Aproveite enquanto disponível.</p>
       </div>
 
+      <!-- Consulta Presencial -->
       <div class="service-item">
-        <div class="service-tier">R$ 300 ou R$ 600</div>
-        <div class="service-name">Consulta Online ou Presencial</div>
-        <div class="service-notice">
+        <div class="service-tier">R$ 300</div>
+        <div class="service-name">Consulta Médica Clínica</div>
+        <p class="service-desc">Consulta presencial no consultório, com anamnese detalhada, exame físico e elaboração do plano terapêutico individualizado. Para novos pacientes e casos que demandam avaliação direta.</p>
+        <div class="service-notice" style="margin-top:1rem;">
           <strong>Agenda Fechada</strong>
-          Entre em contato para entrar na Lista de Espera. Trabalhamos com pacotes, promoções e valores diferenciados para que questões financeiras não atrapalhem seu cuidado.
+          Entre em contato para entrar na lista de espera. Trabalhamos com valores diferenciados para que questões financeiras não atrapalhem seu cuidado.
         </div>
       </div>
 
+      <!-- Cardiogenética -->
       <div class="service-item">
         <div class="service-tier">A partir de R$ 1.000</div>
-        <div class="service-name">Cardiopatias Genéticas</div>
-        <p class="service-desc">
-          Avaliação de pessoas com suspeitas de doenças cardíacas genéticas. Construção de heredograma e avaliação quanto à necessidade de sequenciamento genético para diagnóstico de doenças hereditárias tratáveis. Exames não inclusos.
-        </p>
+        <div class="service-name">Cardiogenética Familiar</div>
+        <p class="service-desc">Avaliação especializada para famílias com histórico de doenças cardíacas hereditárias. Inclui construção de heredograma familiar completo e análise de indicação para sequenciamento genético. Exames laboratoriais e genéticos não inclusos.</p>
       </div>
 
     </div>
@@ -498,80 +280,51 @@
   <section id="pilares">
     <p class="section-label">03 — Pilares Clínicos</p>
     <div class="pillars-grid">
-
       <div class="pillar">
         <div class="pillar-line"></div>
         <h3>Morte Súbita<br>e Sinais de Alerta</h3>
-        <p>
-          A maioria das mortes súbitas cardíacas ocorre em pessoas sem diagnóstico prévio.
-          Identificar fatores de risco silenciosos — como arritmias hereditárias e
-          cardiomiopatias subclínicas — é o primeiro passo da prevenção real.
-        </p>
+        <p>A maioria das mortes súbitas cardíacas ocorre em pessoas sem diagnóstico prévio. Identificar fatores de risco silenciosos — como arritmias hereditárias e cardiomiopatias subclínicas — é o primeiro passo da prevenção real.</p>
       </div>
-
       <div class="pillar">
         <div class="pillar-line"></div>
         <h3>Coração<br>e Cérebro</h3>
-        <p>
-          O sistema cardiovascular e o sistema nervoso são inseparáveis. Fibrilação atrial,
-          hipertensão e disfunção endotelial são causas diretas de declínio cognitivo.
-          Tratar o coração bem é proteger o cérebro.
-        </p>
+        <p>O sistema cardiovascular e o sistema nervoso são inseparáveis. Fibrilação atrial, hipertensão e disfunção endotelial são causas diretas de declínio cognitivo. Tratar o coração bem é proteger o cérebro.</p>
       </div>
-
       <div class="pillar">
         <div class="pillar-line"></div>
         <h3>Hipertensão<br>e Colesterol</h3>
-        <p>
-          A pressão arterial acima de 140 mmHg sistólica não é uma variação normal do
-          envelhecimento. O colesterol LDL elevado tampouco. Ambos têm alvos terapêuticos
-          definidos pela evidência científica.
-        </p>
+        <p>A pressão arterial acima de 140 mmHg sistólica não é uma variação normal do envelhecimento. O colesterol LDL elevado tampouco. Ambos têm alvos terapêuticos definidos pela evidência científica.</p>
       </div>
-
     </div>
   </section>
 
-  <!-- 04 CONTATO -->
+  <!-- 04 AGENDAMENTO -->
   <section id="agendamento">
     <div class="inner">
       <div>
         <p class="section-label">04 — Contato</p>
         <h2 class="contact-title">Agende<br>sua consulta.</h2>
-        <p class="contact-intro">
-          O agendamento é feito exclusivamente via WhatsApp.
-          Informe seu nome completo, motivo da consulta e plano de saúde, se houver.
-        </p>
+        <p class="contact-intro">O agendamento é feito exclusivamente via WhatsApp. Informe seu nome completo, motivo da consulta e plano de saúde, se houver.</p>
       </div>
-
       <div class="contact-details">
         <div class="contact-item">
           <label>WhatsApp</label>
           <p><a href="https://wa.me/5521993103065">(21) 99310-3065</a></p>
-          <a class="whatsapp-btn" href="https://wa.me/5521993103065?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta%20com%20a%20Dra.%20Maria%20Sampaio." target="_blank">
-            Iniciar Conversa
-          </a>
+          <a class="whatsapp-btn" href="https://wa.me/5521993103065?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta%20com%20a%20Dra.%20Maria%20Sampaio." target="_blank">Iniciar Conversa</a>
         </div>
-
         <div class="contact-item">
           <label>Consultório</label>
           <p>Rua Visconde de Ouro Preto, 5 — 5º andar<br>Rio de Janeiro, RJ</p>
         </div>
-
         <div class="contact-item">
           <label>Registro Profissional</label>
           <p>CRM-RJ 52-0125663-7</p>
         </div>
-
-        <p class="contact-note">
-          Atendimento presencial e online no Rio de Janeiro.<br>
-          Telemedicina disponível conforme regulamentação CFM.
-        </p>
+        <p class="contact-note">Atendimento presencial e online no Rio de Janeiro.<br>Telemedicina disponível conforme regulamentação CFM.</p>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <span>© 2026 Dra. Maria Sampaio — CRM-RJ 52-0125663-7</span>
     <span>Rio de Janeiro, Brasil</span>
